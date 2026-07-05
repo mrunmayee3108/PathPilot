@@ -1,5 +1,5 @@
 import streamlit as st
-from supervisor import Supervisor
+from graph import graph
 st.set_page_config(
     page_title="PathPilot AI",
     page_icon="🚀",
@@ -11,7 +11,7 @@ with st.sidebar:
 
     st.markdown("""
     ### Active Agents
-    > Supervisor Agent  
+    > LangGraph Planner 
     > Skill Gap Agent  
     > Resource Agent  
     > Project Agent  
@@ -64,13 +64,12 @@ if st.button("Generate Roadmap"):
             "timeline": timeline
         }
 
-        supervisor = Supervisor()
-
-        st.info("Supervisor Agent analyzing user goal...")
-        st.info("Routing tasks to specialized agents...")
+        st.info("LangGraph Supervisor initialized")
+        st.info("Planning execution graph...")
+        st.info("Executing AI agents...")
 
         with st.spinner("Generating personalized roadmap..."):
-            outputs = supervisor.run(state)
+            outputs = graph.invoke(state)
 
         st.success("Roadmap Generated Successfully!")
 
@@ -79,7 +78,7 @@ if st.button("Generate Roadmap"):
 
         with col1:
             st.subheader("Skill Gap Analysis")
-            st.write(outputs.get("skills", "No skill analysis available."))
+            st.write(outputs.get("skill_report", "No skill analysis available."))
 
         with col2:
             st.subheader("📚 Recommended Resources")

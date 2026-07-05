@@ -11,10 +11,11 @@ def skill_gap_agent(state):
     prompt = f"""
     User goal: {state['goal']}
     Current skills: {state['skills']}
-    Identify missing skills required to achieve the user's goal. Give bullet points.
+    Identify missing skills required to achieve the user's goal.
+    Give bullet points.
     """
     response = model.generate_content(prompt)
-    return response
+    return response.text
 
 # test 
 # state = {
